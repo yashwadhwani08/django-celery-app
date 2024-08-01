@@ -1,0 +1,22 @@
+<h1>
+  Hang on tight we have recieved your prompts and they will be here anytime soon
+</h1>
+
+<h2>
+  Meanwhile if you wish to give more prompts, use this
+  <a href="{% url 'home' %}">link</a> here
+</h2>
+
+{% if resultLists %} 
+    {% for inputPrompt in resultLists%}
+        <section>
+        {% if len(str(inputPrompt.image_output.url)) != 0 %}
+        <img src="{{ inputPrompt.image_output.url }}" />
+        {% endif %}
+        <h1>{{ inputPrompt.text_input }}</h1>
+        {% if len(str(inputPrompt.meta_data)) != 0 %}
+        <p>{{ inputPrompt.meta_data }}</p>
+        {% endif %}
+        </section>
+    {% endfor %} 
+{% endif %}
